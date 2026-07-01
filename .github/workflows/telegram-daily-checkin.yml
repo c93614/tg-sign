@@ -16,7 +16,7 @@ jobs:
       - name: Wait
         uses: 1itachi/sleep-random@v1.0.0
         with:
-          minutes: '5'
+          minutes: '3'
           random: 'true'
 
       # - name: Download artifact
