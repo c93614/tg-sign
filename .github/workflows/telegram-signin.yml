@@ -19,11 +19,11 @@ jobs:
       #     minutes: '5'
       #     random: 'true'
 
-      - name: Download artifact
-        continue-on-error: true
-        uses: actions/download-artifact@v4
-        with:
-           name: session
+      # - name: Download artifact
+      #   continue-on-error: true
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #      name: session
       
       # - name: Try download artifact
       #   run: |
@@ -32,6 +32,13 @@ jobs:
       #     else
       #       echo "no artifact, skip"
       #     fi
+
+      - uses: actions/cache/restore@v4
+        with:
+          path: session.session
+          key: session-${{ github.run_id }}
+          restore-keys: |
+            session-
     
       - name: Setup tmate session
         env:
@@ -60,9 +67,14 @@ jobs:
           TELEGRAM_MESSAGE: ${{ vars.TELEGRAM_MESSAGE }}
         run: python main.py
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: session
+      #     path: session.session
+      #     overwrite: true
+          
+      - uses: actions/cache/save@v4
         with:
-          name: session
           path: session.session
-          overwrite: true
+          key: session-${{ github.run_id }}
