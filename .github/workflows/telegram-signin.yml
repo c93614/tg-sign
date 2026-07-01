@@ -1,4 +1,4 @@
-name: Telegram Daily Sign-in
+name: Telegram Daily Check-in to Get Rewards
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  signin:
+  check-in:
     runs-on: ubuntu-latest
 
     steps:
