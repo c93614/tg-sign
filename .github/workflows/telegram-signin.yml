@@ -10,12 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: cli/cli-action@v2
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: session
+      # - name: Download artifact
+      #  uses: actions/download-artifact@v4
+      #  with:
+      #    name: session
+      - name: Try download artifact
+        run: |
+          if gh run download --name session 2>/dev/null; then
+            echo "download ok"
+          else
+            echo "no artifact, skip"
+          fi
     
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
