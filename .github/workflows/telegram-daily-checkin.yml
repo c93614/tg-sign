@@ -1,9 +1,9 @@
 name: Telegram Daily Check-in to Get Rewards
 
 on:
-  schedule:
-    - cron: '5 9 * * *'
-      timezone: 'Asia/Shanghai'
+  # schedule:
+  #   - cron: '5 9 * * *'
+  #     timezone: 'Asia/Shanghai'
   workflow_dispatch:
 
 jobs:
